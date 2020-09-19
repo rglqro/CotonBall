@@ -12,7 +12,7 @@ class Login_model extends CI_Model {
         $password = $this->input->post("contrasena");
      
 
-        $query = $this->db->query("SELECT * FROM usuarios WHERE usuarios.usuario  = '$usuario' AND usuarios.contrasena = '$password' AND usuarios.status = 1");
+        $query = $this->db->query("SELECT us.id_usuario, us.nombre, us.apellidopa, us.apellidoma, us.usuario, us.contrasena, oc.descripcion, us.perfil, us.foto_perfil FROM usuarios us INNER JOIN opciones_catalogo oc ON oc.id_opcion = us.perfil WHERE oc.id_catalogo = 1 AND us.usuario  = '$usuario' AND us.contrasena = '$password' AND us.status = 1");
     
          if($query->num_rows() > 0){
 
@@ -23,7 +23,8 @@ class Login_model extends CI_Model {
                 "apellidoma" => $query->row()->apellidoma,
                 "usuario" => $query->row()->usuario,
                 "contrasena" => $query->row()->contrasena,
-                "perfil" => $query->row()->perfil, 
+                "descripcion" => $query->row()->descripcion,
+                "perfil" => $query->row()->perfil,
                 "foto_perfil" => $query->row()->foto_perfil
             ));
          }else{
@@ -32,3 +33,4 @@ class Login_model extends CI_Model {
          }
     }
 }
+// SELECT * FROM usuarios us INNER JOIN opciones_catalogo oc ON oc.id_opcion = us.perfil WHERE oc.id_catalogo = 1

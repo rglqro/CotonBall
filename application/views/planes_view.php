@@ -8,22 +8,15 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-   
  
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
   <!-- Main content -->
 
 
-    <section class="content">
+      <section class="content">
 
       <!-- Default box -->
-      <div class="card card-solid"  style="background: url('<?php echo base_url(); ?>dist/img/way_back.JPG') no-repeat center; background-size: cover; min-height: 100vh; line-height: normal;">
+      <div class="card card-solid"  style="background: url('<?php echo base_url(); ?>dist/img/way_back.JPG') no-repeat center; background-size: cover; min-height: 80vh; line-height: normal;">
         <div class="card-body pb-0">
           <div class="row d-flex align-items-stretch">
 
@@ -195,7 +188,146 @@
 
 <script>
 
+
+  var url = "<?=base_url()?>";
+  var url2 = "<?=base_url()?>index.php/";
  
+  var table_saldos;
+
+$("#tabla_saldos_conductor").ready( function () {
+
+
+  $('#tabla_saldos_conductor thead tr:eq(0) th').each( function (i) {
+    if( i != 0  && i != 10){
+      var title = $(this).text();
+      // $(this).html('<input type="text" style="width:100%;" placeholder="'+title+'"/>' );
+      $(this).html('<input type="text" style="width:100%; background: #353A40; color: white; border: 0; font-weight: 500"  placeholder="'+title+'"/>' );
+      $( 'input', this ).on('keyup change', function () {
+        if (table_saldos.column(i).search() !== this.value ) {
+          table_saldos.column(i).search( this.value).draw();
+
+          var total = 0;
+          var index = table_saldos.rows( { selected: true, search: 'applied' } ).indexes();
+          var data = table_saldos.rows( index ).data();
+          $.each(data, function(i, v){
+            total += parseFloat(v.cantidad);
+          });
+
+          var to1 = formatMoney(total);
+          document.getElementById("totalPagos").value = to1;
+        }
+      });
+    }
+  });
+
+  $('#tabla_saldos_conductor').on('xhr.dt', function ( e, settings, json, xhr ) {
+    var total = 0;
+    $.each(json.data, function(i, v){
+      total += parseFloat(v.cantidad);
+    });
+    var to = formatMoney(total);
+    document.getElementById("totalPagos").value = formatMoney(total);
+  });
+
+
+  table_saldos = $('#tabla_saldos_conductor').DataTable({
+    dom: '<"clear">',
+    width: 'auto',
+    "language":{ "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" },
+    "processing": true,
+    "pageLength": 10,
+    "bAutoWidth": false,
+    "bLengthChange": false,
+    "scrollX": true,
+    "bInfo": false,
+    "searching": true,
+    "ordering": false,
+    "fixedColumns": true,
+    "ordering": false,
+ 
+    "columns": [
+ 
+    {
+      "width": "4%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">'+d.id_pago+'</p>';
+      }
+    },
+    {
+      "width": "12%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">'+d.fechaviaje+'</p>';
+      }
+    },
+
+    {
+      "width": "15%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">'+d.origen+'</p>';
+      }
+    },
+
+    {
+      "width": "15%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">'+d.destino+'</p>';
+      }
+    },
+
+    {
+      "width": "15%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">'+d.nombre+' '+d.apellidopa+' '+d.apellidoma+'</p>';
+      }
+    },
+
+    {
+      "width": "8%",
+      "data": function( d ){
+        return '<p style="font-size: .9em"><span class="right badge badge-info">'+d.pasajeros+'</span></p>';
+      }
+    },
+ 
+    {
+      "width": "10%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">$ '+formatMoney(d.cantidad)+'</p>';
+      }
+    },
+
+    {
+      "width": "10%",
+      "data": function( d ){
+        return '<p style="font-size: .9em">$ '+formatMoney(d.cantidad)+'</p>';
+      }
+    },
+
+    {
+      "width": "10%",
+      "data": function( d ){
+        return '<p style="font-size: .9em"><b>'+d.estatuspago+'</b></p>';
+      }
+    },
+
+    {
+      "width": "6%",
+      "orderable": false,
+      "data": function( data ){
+        opciones = '<div class="btn-group" role="group">';
+        opciones += '<button class="btn btn-just-icon btn-round" title="Ver mas detalles" style="background:#FF7F50;color:white;" mas_opciones_9"><i class="fa fa-plus"></i></button>';
+        return opciones + '</div>';
+      }
+    }
+ 
+
+    ],
+    "ajax": {
+      "url": url2 + "Embajador/ver_pagos_embajador",
+      "type": "POST",
+      cache: false,
+    }
+  });
+}); 
 
  
     function formatMoney( n ) {
@@ -208,55 +340,10 @@
         return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
- 
+     $(window).resize(function(){
+        table_saldos.columns.adjust();
+      
+    });
+
 
 </script>
-
-<!-- 
- <div class="row">
-                        <div class="col-md-3">
-                            <div class="card card-pricing card-plain">
-                                <div class="card-content">
-                                    <h6 class="category">Freelancer</h6>
-                                    <div class="icon">
-                                        <i class="material-icons">weekend</i>
-                                    </div>
-                                    <h3 class="card-title">FREE</h3>
-                                    <p class="card-description">
-                                        This is good if your company size is between 2 and 10 Persons.
-                                    </p>
-                                    <a href="#pablo" class="btn btn-white btn-round">Choose Plan</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card card-pricing card-raised">
-                                <div class="card-content">
-                                    <h6 class="category">Small Company</h6>
-                                    <div class="icon icon-rose">
-                                        <i class="material-icons">home</i>
-                                    </div>
-                                    <h3 class="card-title">$29</h3>
-                                    <p class="card-description">
-                                        This is good if your company size is between 2 and 10 Persons.
-                                    </p>
-                                    <a href="#pablo" class="btn btn-rose btn-round">Choose Plan</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card card-pricing card-plain">
-                                <div class="card-content">
-                                    <h6 class="category">Medium Company</h6>
-                                    <div class="icon">
-                                        <i class="material-icons">business</i>
-                                    </div>
-                                    <h3 class="card-title">$69</h3>
-                                    <p class="card-description">
-                                        This is good if your company size is between 11 and 99 Persons.
-                                    </p>
-                                    <a href="#pablo" class="btn btn-white btn-round">Choose Plan</a>
-                                </div>
-                            </div>
-                        </div>
-                         -->

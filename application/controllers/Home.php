@@ -16,7 +16,7 @@ class Home extends CI_Controller {
  
     public function cerrar_sesion(){
          $this->session->sess_destroy();
-        redirect(base_url());
+        redirect(base_url().'index.php/Login');
     }
 
 

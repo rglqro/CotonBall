@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cotton Ball | Buscar Viaje</title>
+  <title>Cotton Ball | Buscar</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
  
@@ -93,7 +93,7 @@ header{
   color: #FF7F50;
   margin-top: -2px;
 }
-/*info del conductor*/
+/*info del Buscar*/
 #registroem {
   color: #fff;
   font-family: sans-serif;
@@ -235,7 +235,7 @@ h6{
  color: #ff7f50;
 
 } 
-.conductor-form .form-control[type=text]{
+.Buscar-form .form-control[type=text]{
   background-color: #fff;
   display: inline-block;
   transition: .5s;
@@ -245,7 +245,7 @@ h6{
   text-align: center;
     border: 1px solid #ff7f50;
 }
-.conductor-form .form-control[type=email]{
+.Buscar-form .form-control[type=email]{
   background-color: #fff;
   display: inline-block;
   transition: .5s;
@@ -273,126 +273,325 @@ h6{
 }
 
 
+/*span.error{ color: red; font-size: 0.8em; }*/
+.has-error{ 
+  color: red; 
+  font-size: 1em; 
+}
+
+
 
 </style>
 </head>
 
-
-
-
-      <div class="modal fade" id="modal_request_true">
+<!-- <div class="modal fade" id="modal_request_true" data-backdrop="static" data-keyboard="false" href="#">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-body">
               <p style="font-family: sans-serif; color: black;">¡Gracias por querer ser parte de nosotros!<br>
-              Te hemos enviado un correo con los requisitos necesarios para ser parte de Cotton Ball y empezar a <b>conducir</b> en la red de trotamundo más importante de México.</p>
+              Te hemos enviado un correo con los requisitos necesarios para ser parte de Cotton Ball y empezar a <b>conducir</b> en la red de trotamundo más importante de México. <b style="color: #FF7F50;"><br>Revisa tu correo electrónico.</b></p>
+              <center><button class="btn btn-success cerrar_recargar">ENTENDIDO</button></center>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="modal fade" id="modal_request_false">
+      <div class="modal fade" id="modal_request_false" data-backdrop="static" data-keyboard="false" href="#">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-body">
               ¡Tu soliciud no fue prosesada!<br>
               Revisa bien tus datos y/o tu conexión a internet y vuelve a intentar.
+
+              <center><button class="btn btn-warning cerrar_recargar">ENTENDIDO</button></center>
             </div>
           </div>
         </div>
       </div>
 
 
-
+ -->
 
 <!--body-->
-<body class="hold-transition sidebar-mini" style="background: black;">
+<body class="hold-transition sidebar-mini">
   <div class="wrapper">
-    
-<header>
-  <?php include "navbar_principal.php";?>
-      <!------  ./fn navbar barra-->
+    <header>
+      <?php include "navbar_principal.php";?>
+      <div  class="container-fluid" style="margin-top: 100px; background-color: #FF7F50;">
 
-<!-- ./container-fluid-->
-      <div  class="container-fluid" style="margin-top: 100px;">
         <div class="row">
-        <div class="col-md-3">&nbsp;</div>
-     <div class="col-md-6"><h4 style="margin-right: 5px; text-align: center; color: #fff; font-size: 40px;font-family: 'Anton';">¡Buscar viaje!</h4></div>
-                  <div class="col-md-3">&nbsp;</div>
+          <div class="col-md-3">&nbsp;</div>
+          <div class="col-md-6"><h2 style="margin-right: 5px; text-align: center; color: #fff; font-size: 70px;font-family: 'Anton';">¡Quiero Viajar!</h2></div>
+          <div class="col-md-3">&nbsp;</div>
         </div>
-         <br>
-<!--         <div class="row">
-                  <div class="col-md-2">&nbsp;</div>
-          <div class="col-md-8"><p><span style="font-size: 21px; font-family: sans-serif; text-align: center">Conduce, conoce y gana, realiza viajes cuando quieras y a donde <br
-            >quieras generando ganancias</span> </p></div>
-                            <div class="col-md-2">&nbsp;</div>
 
-        </div> -->
-    
-   <br>
-   <div class="row">
-    <div class="col-md-2">&nbsp;</div>
+        <br>
+        
+        <div class="row">
+          <div class="col-md-1">&nbsp;</div>
+          <div class="col-md-2"><label>Origen</label><input type="text" name="origen" class="form-control" placeholder="Origen de su viaje"></div>
+          <div class="col-md-2"><label>Destino</label><input type="text" name="destino" class="form-control" placeholder="Destino de su viaje"></div>
+          <div class="col-md-2"><label>Fecha</label><input type="text" name="fecha" class="form-control" placeholder="Fecha de su viaje"></div>
+          <div class="col-md-2"><label>Horario</label><input type="text" name="horario" class="form-control" placeholder="Horario de su viaje"></div>
+          <div class="col-md-2"><label>&nbsp;    </label><input type="button" name="buscar" class="form-control" value="Buscar" style="background-color: #393d42;color: white;"></div>
+          <div class="col-md-1">&nbsp;</div>
+        </div>
 
-     <div class="col-md-8">
-          <!--  <p style="text-align: left; color: #fff; font-family: sans-serif; font-size: 20px;">Registrate</p> -->
-
-
-
-<form id="formulario_quiero_ser_conductor" method="post" >
-
-    <div class="form-row">
-      <div class="col">
-    <!--     <select id="origen" name="origen" class="cargar_lista_origen form-control" required="required"></select> -->
-        <select id="origen" name="origen" class=" form-control lista_origen"></select>
-
-        <!-- <input type="text" class="form-control" id="origen" name="origen" placeholder="Origen" style="font-family: sans-serif;"> -->
-      </div>
-      <div class="col">
-        <select id="destino" name="destino" class=" form-control lista_destino"></select>
-<!--         <input type="email" class="form-control" id="destino" name="destino" placeholder="Destino"  style="font-family: sans-serif;">
- -->      </div>
-
-        <div class="col">
-        <input type="email" class="form-control" id="fecha" name="fecha" placeholder="Fecha"  style="font-family: sans-serif;">
-      </div>
-      <input type="submit" class="btn btn-success" style="margin-right:15px;" value="Buscar">
-       <div class="data"></div>
-       <div class="loader"></div>
-      <!-- <input type="submit" value="Enviar" class="btn btn-snviar btn-lg"> -->
-    </div>
-  </form>
+        <br><br>
 
 
 
-     </div>
-         <div class="col-md-2">&nbsp;</div>
-          <div class="col-md-12">&nbsp;</div><div class="col-md-12">&nbsp;</div>
-
-   </div> 
-
-
-   <div class="row datos_viajes">
-    <div class="col-md-12"><br></div>
-     <!--   <p id="palabras"> <span>Genera <b>dinero</b> con tú dispositivo <br>desde cualquier parte de <b>México</b>.</span></p>
-             <div class="icons">
-               <i class="fa fa-money"></i>
-               
-             </div>
-           </div>
-           <div class="col-md-4">
-             <p id="palabras"><span>Ayuda a un <b>viajero</b> a llegar a su destino <br> de forma <b>segura</b> y sin <b>complicaciones.</b></span></p>
-             <div class="icons">
-               <i class="fa fa-users"></i>
-             </div>
-           </div>
-           <div class="col-md-4">
-             <p id="palabras"><span><b>Regístrate</b> para obtener tu acceso. <br> ¡Una vez activo comenzaras a <b>ganar</b>!</span> </p>
-             <div class="icons">
-             <i class="fa fa-laptop"></i>
-             </div>
-           </div> -->
+   <div class="row" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 5, 1, 0.5)), url('<?php echo base_url(); ?>dist/img/conduc_1.jpg') no-repeat center; background-size:cover; min-height: 45vh; line-height:normal;">
+    <div class="col-md-12"></div>
 
  
+
+
+<div class="card-body pb-0">
+          <div class="row d-flex align-items-stretch">
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  VIAJES COTTON BALL
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
+                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
+                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
+                      <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="background: #CFCFCF;">
+                  <div class="text-right">
+                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
+                      <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
+                      <i class="fas fa-user"></i> Gestionar Viaje
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+ 
+
+   </div>  
+
 
 
     </div>
@@ -417,61 +616,9 @@ h6{
 
 
  <script>
-
-
-  $(".lista_origen").ready( function(){
-            $(".lista_origen").append('<option value="">Selecciona origen</option>');
-            $.getJSON( url + "Principal/lista_origen").done( function( data ){
-                $.each( data, function( i, v){
-                    $(".lista_origen").append('<option value="'+v.nombre+'">'+v.nombre+'</option>');
-                });
-            });
-        });
-
-
-  $('select#origen').on('change',function(){
-    $(".lista_destino").html("");
-    var valor = $(this).val();
-    var new_valor = valor.split(" ", 1);
-
-// alert(new_valor);
-    
-     $(".lista_destino").append('<option value="">Selecciona destino</option>');
-            $.getJSON( url + "Principal/lista_destino/"+new_valor).done( function( data ){
-                $.each( data, function( i, v){
-                    $(".lista_destino").append('<option value="'+v.nombre+'">'+v.nombre+'</option>');
-                });
-            });
-
-
-  });
-
-
-
-
-  $('select#destino').on('change',function(){
-    $(".datos_viajes").html("");
-    var valor = $(this).val();
-    var new_valor = valor.split(" ", 1);
-
-// alert(new_valor);
-    
-     $(".datos_viajes").append('<div class="col-md-12"><input type="email" class="form-control" id="destino" name="destino" placeholder="Destino"  style="font-family: sans-serif;"></div>');
-            // $.getJSON( url + "Principal/lista_destino/"+new_valor).done( function( data ){
-            //     $.each( data, function( i, v){
-            //         $(".lista_destino").append('<option value="'+v.nombre+'">'+v.nombre+'</option>');
-            //     });
-            // });
-
-
-  });
-
-
-
-
    
 
-$("#formulario_quiero_ser_conductor").submit( function(e) {
+$("#formulario_quiero_ser_Buscar").submit( function(e) {
     e.preventDefault();
     // var formData = new FormData($("#form")[0]);
 }).validate({
@@ -506,6 +653,44 @@ $("#formulario_quiero_ser_conductor").submit( function(e) {
     }
 });
 
+
+
+
+$(document).ready(function() {
+jQuery.extend(jQuery.validator.messages, {
+  required: "Este campo es obligatorio.",
+  remote: "Por favor, rellena este campo.",
+  email: "Por favor, escribe una dirección de correo válida",
+  url: "Por favor, escribe una URL válida.",
+  date: "Por favor, escribe una fecha válida.",
+  dateISO: "Por favor, escribe una fecha (ISO) válida.",
+  number: "Por favor, escribe un número entero válido.",
+  digits: "Por favor, escribe sólo dígitos.",
+  creditcard: "Por favor, escribe un número de tarjeta válido.",
+  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  accept: "Por favor, escribe un valor con una extensión aceptada.",
+  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+});
+});
+
+
+
+// $( ".cerrar_recargar" ).click(function() {
+$(document).on("click", ".cerrar_recargar", function(){
+  $("#modal_request_true").modal('toggle');
+  location.reload();
+});
+
+$(document).on("click", ".cerrar_mal", function(){
+  $("#modal_request_false").modal('toggle');
+});
+
+ 
 
  </script>
 

@@ -28,7 +28,11 @@ class Embajador extends CI_Controller {
   }
 
      public function gestiones(){
-    $this->load->view('gestiones_embajador');
+       $datos=array();
+       // $datos["viajes_gestionar"]= $this->Embajador_model->getListViajesTodos(); 
+      $datos['viajes_gestionar'] = json_decode( json_encode( $this->Embajador_model->getListViajesTodos()->result_array()));            
+
+       $this->load->view('gestiones_embajador',$datos);
   }
 
        public function mensajes(){
@@ -48,6 +52,13 @@ class Embajador extends CI_Controller {
     public function conversaciones_usuario($valor){
     echo json_encode( $this->Embajador_model->get_conversations_chat($valor)->result_array() );
   }
+
+
+     public function datos_conductor_viaje($valor){
+    echo json_encode( $this->Embajador_model->get_driver_new_chat($valor)->result_array() );
+  }
+
+
 
  
  
@@ -98,6 +109,9 @@ $data = array('upload_data' => $this->upload->data());
 
 $foto_data = $data['upload_data']['file_name'];
 // echo $foto_data;
+
+
+
 
 $respuesta = $this->Embajador_model->subir_foto($foto_data);
 

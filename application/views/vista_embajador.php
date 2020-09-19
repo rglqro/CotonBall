@@ -273,29 +273,40 @@ h6{
 }
 
 
+/*span.error{ color: red; font-size: 0.8em; }*/
+.has-error{ 
+  color: red; 
+  font-size: 1em; 
+}
+
+
+
 </style>
 </head>
 
 
 
 
-      <div class="modal fade" id="modal_request_true">
+      <div class="modal fade" id="modal_request_true" data-backdrop="static" data-keyboard="false" href="#">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-body">
               <p style="font-family: sans-serif; color: black;">¡Gracias por querer ser parte de nosotros!<br>
-              Te hemos enviado un correo con los requisitos necesarios para ser parte de Cotton Ball y empezar a <b>Gestionar viajes</b> en la red de trotamundo más importante de México.</p>
+              Te hemos enviado un correo con los requisitos necesarios para ser parte de Cotton Ball y empezar a <b>Gestionar viajes</b> en la red de trotamundo más importante de México. <b style="color: #FF7F50;"><br>Revisa tu correo electrónico.</b></p>
+              <center><button class="btn btn-success cerrar_recargar">ENTENDIDO</button></center>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="modal fade" id="modal_request_false">
+      <div class="modal fade" id="modal_request_false" data-backdrop="static" data-keyboard="false" href="#">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-body">
               ¡Tu soliciud no fue prosesada!<br>
               Revisa bien tus datos y/o tu conexión a internet y vuelve a intentar.
+
+              <center><button class="btn btn-warning cerrar_recargar">ENTENDIDO</button></center>
             </div>
           </div>
         </div>
@@ -316,13 +327,13 @@ h6{
       <div  class="container-fluid" style="margin-top: 100px;">
         <div class="row">
         <div class="col-md-3">&nbsp;</div>
-     <div class="col-md-6"><h2 style="margin-right: 5px; text-align: center; color: #fff; font-size: 70px;font-family: 'Anton';">¡Sé un embajador!</h2></div>
+     <div class="col-md-6"><h2 style="margin-right: 5px; text-align: center; color: #fff; font-size: 70px;font-family: 'Anton';">¡Sé un Embajador!</h2></div>
                   <div class="col-md-3">&nbsp;</div>
         </div>
          <br>
         <div class="row">
                   <div class="col-md-2">&nbsp;</div>
-          <div class="col-md-8"><p><span style="font-size: 21px; font-family: sans-serif; text-align: center">Gestiona, asigna y genera ganancias, administra viajes cuando quieras eligiendo  <br
+          <div class="col-md-8"><p><span style="font-size: 21px; font-family: sans-serif; text-align: center">Gestiona, asigna y genera ganancias, administra viajes cuando quieras eligiendo<br
             >los dias y horarios que tu dispongas</span> </p></div>
                             <div class="col-md-2">&nbsp;</div>
 
@@ -341,12 +352,14 @@ h6{
 
     <div class="form-row">
       <div class="col">
-        <input type="text" class="form-control" id="name_embajador" name="name_embajador" placeholder="Digita Nombre Completo" style="font-family: sans-serif;">
+        <input type="text" class="form-control" id="name_driver" name="name_driver" placeholder="Digita Nombre Completo" style="font-family: sans-serif;" required="required">
       </div>
       <div class="col">
-        <input type="email" class="form-control" id="email_embajador" name="email_embajador" placeholder="Digita tu Email"  style="font-family: sans-serif;">
+        <input type="email" class="form-control" id="email_driver" name="email_driver" placeholder="Digita tu Email"  style="font-family: sans-serif;" required="required">
       </div>
       <input type="submit" class="btn btn-success" style="margin-right:15px;" value="Enviar">
+       <div class="data"></div>
+       <div class="loader"></div>
       <!-- <input type="submit" value="Enviar" class="btn btn-snviar btn-lg"> -->
     </div>
   </form>
@@ -360,7 +373,7 @@ h6{
    </div> 
 
 
-   <div class="row" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 5, 1, 0.5)), url('<?php echo base_url(); ?>dist/img/embajador.jpg') no-repeat center; background-size:cover; min-height: 45vh; line-height:normal;">
+   <div class="row" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 5, 1, 0.5)), url('<?php echo base_url(); ?>dist/img/conduc_1.jpg') no-repeat center; background-size:cover; min-height: 45vh; line-height:normal;">
     <div class="col-md-12"></div>
     <div class="col-md-4">
       <p id="palabras"> <span>Genera <b>dinero</b> con tú dispositivo <br>desde cualquier parte de <b>México</b>.</span></p>
@@ -445,6 +458,44 @@ $("#formulario_quiero_ser_embajador").submit( function(e) {
     }
 });
 
+
+
+
+$(document).ready(function() {
+jQuery.extend(jQuery.validator.messages, {
+  required: "Este campo es obligatorio.",
+  remote: "Por favor, rellena este campo.",
+  email: "Por favor, escribe una dirección de correo válida",
+  url: "Por favor, escribe una URL válida.",
+  date: "Por favor, escribe una fecha válida.",
+  dateISO: "Por favor, escribe una fecha (ISO) válida.",
+  number: "Por favor, escribe un número entero válido.",
+  digits: "Por favor, escribe sólo dígitos.",
+  creditcard: "Por favor, escribe un número de tarjeta válido.",
+  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  accept: "Por favor, escribe un valor con una extensión aceptada.",
+  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+});
+});
+
+
+
+// $( ".cerrar_recargar" ).click(function() {
+$(document).on("click", ".cerrar_recargar", function(){
+  $("#modal_request_true").modal('toggle');
+  location.reload();
+});
+
+$(document).on("click", ".cerrar_mal", function(){
+  $("#modal_request_false").modal('toggle');
+});
+
+ 
 
  </script>
 

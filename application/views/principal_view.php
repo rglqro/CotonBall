@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cotton Ball | Perfil de usuario</title>
+  <title>Cotton Ball | Oficial</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
  
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/css/select2.min.css">
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>dist/css/fuenteAton.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>data/dist/css/fuenteAton.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url("data/dist/css/adminlte.min.css")?>">
 <link rel="stylesheet" type="text/css" href="<?= base_url("dist/css/font-awesome.min.css")?>">
 
@@ -492,7 +492,7 @@ h6{
       <div class="col-sm">&nbsp;</div>
        <div class="col-sm">
         <br>
-        <a href="<?php echo base_url(); ?>index.php/Principal/buscar"><button type="submit" name="button" id="botonesprincipal" class="btn  btn-lg" style="margin-left:130px; ">Buscar Viajes</button></a>
+        <a href="<?php echo base_url(); ?>index.php/Buscar"><button type="submit" name="button" id="botonesprincipal" class="btn  btn-lg" style="margin-left:130px; ">Buscar Viajes</button></a>
       </div>
         <div class="col-sm">&nbsp;</div>
     </div>
@@ -509,23 +509,23 @@ h6{
          </div>
          <div class="col-md-4">&nbsp;</div>
         <div class="col-md-4">
-           <p style="margin-top: 10px;"><span><a href="<?php echo base_url(); ?>index.php/Principal/buscar" style="color:#393d42;">Ver todos los viajes</a></span></p>
+           <p style="margin-top: 10px;"><span><a href="<?php echo base_url(); ?>index.php/Buscar" style="color:#393d42;">Ver todos los viajes</a></span></p>
          </div>
        </div>
        <div class="row">
          <div class="col-md-4" id="tags">
            <div class="boton2">
-             <a href="<?php echo base_url(); ?>index.php/Principal/buscar"><button type="button" name="button" id="boton2">Querétaro a CDMX <br> $170</button></a>
+             <a href="<?php echo base_url(); ?>index.php/Buscar"><button type="button" name="button" id="boton2">Querétaro a CDMX <br> $170</button></a>
            </div>
          </div>
          <div class="col-md-4" id="tags">
            <div class="boton3">
-             <a href="<?php echo base_url(); ?>index.php/Principal/buscar"><button type="button" name="button" id="boton3">Puebla a Querétaro <br>$300</button></a>
+             <a href="<?php echo base_url(); ?>index.php/Buscar"><button type="button" name="button" id="boton3">Puebla a Querétaro <br>$300</button></a>
            </div>
        </div>
        <div class="col-md-4" id="tags">
          <div class="boton4">
-           <a href="<?php echo base_url(); ?>index.php/Principal/buscar"><button type="button" name="button" id="boton4">Cuernavaca a Querétaro $250</button></a>
+           <a href="<?php echo base_url(); ?>index.php/Buscar"><button type="button" name="button" id="boton4">Cuernavaca a Querétaro $250</button></a>
          </div>
        </div>
        </div>
@@ -560,7 +560,7 @@ h6{
      <div class="row">
         <div class="col-sm-4">&nbsp;</div>
         <div class="col-sm-4">
-        <a href="<?php echo base_url(); ?>index.php/Principal/buscar"><button type="submit" name="button" id="botombuscar" class="btn btn-lg" style="margin-left: 100px;">Buscar Viajes</button></a>
+        <a href="<?php echo base_url(); ?>index.php/Buscar"><button type="submit" name="button" id="botombuscar" class="btn btn-lg" style="margin-left: 100px;">Buscar Viajes</button></a>
       </div>
       <div class="col-sm-4">&nbsp;</div>
      </div>
@@ -611,12 +611,18 @@ h6{
 <!-- ./wrapper -->
 
  
-  
+    
  <script src="<?=base_url("plugins/jquery/jquery.min.js")?>"></script>
 
  <script src="<?=base_url("data/plugins/bootstrap/js/bootstrap.bundle.min.js")?>"></script>
  <script src="<?=base_url("dist/js/adminlte.min.js")?>"></script>
+   <script src="<?=base_url("data/dist/js/jquery.validate.js")?>"></script>
+  <script src="<?=base_url("data/dist/js/url.js")?>"></script>
+
  <script src="<?=base_url("dist/js/demo.js")?>"></script>
 
+
+ 
+ 
 </body>
 </html>

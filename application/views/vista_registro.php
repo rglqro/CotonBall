@@ -49,7 +49,7 @@
 
 <div class="box">
   <div class="login-logo" >
-    <a href="<?php echo base_url(); ?>index.php/Principal"><img src="<?php echo base_url(); ?>dist/img/newlogo2.png" style="margin-top: 15px;"></a>
+    <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>dist/img/newlogo2.png" style="margin-top: 15px;"></a>
   </div>
   <!-- /.logo -->
   <div class="card" style="background-color: rgba(0,0,0,0.3);">
@@ -125,7 +125,7 @@
 
           <div class="col-4">
             <p><br>
-        <a href="<?php echo base_url(); ?>index.php/Reestablecer_controlador" style="color: gray; font-size: 15px;">Olvidé mi contraseña.</a>
+        <a href="<?php echo base_url(); ?>index.php/Restablecer" style="color: gray; font-size: 15px;">Olvidé mi contraseña.</a>
       </p>
           </div>
         </div>

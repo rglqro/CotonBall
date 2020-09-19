@@ -25,13 +25,13 @@
 
 <div class="login-box">
   <div class="login-logo" >
-    <a href="<?php echo base_url(); ?>index.php/Principal"><img src="<?php echo base_url(); ?>dist/img/newlogo2.png" style="margin-top: 15px;"></a>
+    <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>dist/img/newlogo2.png" style="margin-top: 15px;"></a>
   </div>
   <!-- /.login-logo -->
   <div class="card" style="background-color: rgba(0,0,0,0.3);">
     <div class="card-body login-card-body" style="background-color: rgba(0,0,0,0.3);">
       <p class="login-box-msg" style="color: #fff; ">INICIAR SESIÓN</p>
-      <p style="color: white; font-size: 15px;">Ingresa tus credenciales de acceso, si aún no cuentas con ellas puedes registrarte <b><a href="<?php echo base_url(); ?>index.php/Registro">aquí.</a></b></p>
+      <p style="color: white; font-size: 15px;">Ingresa tus credenciales de acceso, si aún no cuentas con ellas puedes registrarte <b><a href="<?php echo base_url(); ?>index.php/Registrar">aquí.</a></b></p>
 
       <form action="<?= site_url('Login/Verificar')?>" method="post" role="form" id="quickForm">
 
@@ -66,12 +66,12 @@
 
        <div class="col-12">
         <p>
-        <a href="<?php echo base_url(); ?>index.php/Reestablecer_controlador" style="color: gray; font-size: 15px;">Olvidé mi contraseña.</a>
+        <a href="<?php echo base_url(); ?>index.php/Restablecer" style="color: gray; font-size: 15px;">Olvidé mi contraseña.</a>
       </p>
     </div>
  
        <div class="col-12">
-      <p><a href="<?php echo base_url(); ?>index.php/Registro_user" style="color: gray; font-size: 15px;">Registrarme en CottonBall</a>
+      <p><a href="<?php echo base_url(); ?>index.php/Registrar" style="color: gray; font-size: 15px;">Registrarme en CottonBall</a>
       </p>
     </div>
       </div>

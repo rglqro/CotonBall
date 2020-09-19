@@ -70,13 +70,15 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <center><br>
+<!-- 
+      <img class="img-circle elevation-1" alt="User Image" src="<?php echo base_url(); ?>data/dist/img/<?php echo $usuario[0]->foto_perfil;?>"style="width: 55px; height: 55px;" >
 
-      <img class="img-circle elevation-1" alt="User Image" src="<?php echo base_url(); ?>data/dist/img/<?php $this->session->userdata('inicio_sesion')["foto_perfil"];?>"style="width: 55px; height: 55px;" >
+      <img class="img-circle img-bordered-sm" src="<?php echo base_url(); ?>data/dist/img/<?php echo $usuario[0]->foto_perfil;?>"  alt="user image" style="width: 200px; height: 200px;" > -->
 
 
 
       <span class="brand-text font-weight-light" style="color: #EBEBEB; font-weight: bold;"><br><b><?php $str = strtoupper($this->session->userdata('inicio_sesion')["nombre"]); $sts = strtoupper($this->session->userdata('inicio_sesion')["apellidopa"]); echo $str.' '.$sts;?></b></span> <br><small style="color: #BABABA;"><?php
-      echo $this->session->userdata('inicio_sesion')["nombre"]; ?></small><br></center>
+      echo $this->session->userdata('inicio_sesion')["descripcion"]; ?></small><br></center>
     </a>
 
     <!-- Sidebar -->
@@ -111,6 +113,8 @@
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/mensajes")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Mensajes </p></a></li>";
 
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/historial")."' class='nav-link'><i class='nav-icon fa fa-list'></i> <p> Historial </p></a></li>";
+
             // echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/planes")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Planes </p></a></li>";
            
               break;
@@ -127,23 +131,27 @@
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/mensajes")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Mensajes </p></a></li>";
 
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/planes")."' class='nav-link'><i class='nav-icon fa fa-bookmark'></i> <p> Planes </p></a></li>";
+
             // echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/planes")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reseñas </p></a></li>";
 
               break;
 
             case '3':
               # code...
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-user'></i> <p> Perfil </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-car'></i> <p> Viajes </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Viajes </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Conductores </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-th'></i> <p> Mis Embajadores </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-th'></i> <p> Embajadores </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Conductores </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Viajeros </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Clientes </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Recargas </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reportes </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reestablecer </p></a></li>";
+
+            //reporte diario de viajes dia, veificar con Ricardo
 
               break;
 
@@ -151,11 +159,13 @@
               # code...
             echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/perfil")."' class='nav-link'><i class='nav-icon fa fa-user'></i> <p> Perfil </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/buscar")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Buscar viaje </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/buscar")."' class='nav-link'><i class='nav-icon fa fa-search'></i> <p> Buscar viaje </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/viajes")."' class='nav-link'><i class='nav-icon fa fa-th'></i> <p> Mis viajes </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/viajes")."' class='nav-link'><i class='nav-icon fa fa-car'></i> <p> Mis viajes </p></a></li>";
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/mensajes")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Mensajes </p></a></li>";
+
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/viajes")."' class='nav-link'><i class='nav-icon fa fa-list'></i> <p>Historial </p></a></li>";
 
             // echo "<li class='nav-item has-treeview'><a href='".site_url("Cliente/reseñas")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reseñas </p></a></li>";
 

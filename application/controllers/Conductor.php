@@ -1,12 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$respuesta=false;
-$msj="Ha ocurrido un error en el proceso, reportarlo por favor";
-$contenido='';
-$data=array();
-$idregistro = (isset($_POST["idregistro"])?$_POST["idregistro"]:0);
-
 class Conductor extends CI_Controller {
 
   public function __construct(){
@@ -26,13 +20,9 @@ class Conductor extends CI_Controller {
   //   }
 
 
-   public function saldos(){
-    $this->load->view('saldos_conductor');
-  }
-  
-    public function publicar(){
+  public function publicar(){
         $this->load->view("publicar_view");
-    }
+  }
     
     public function acciones_viaje(){
         global $respuesta,$msj,$contenido,$idregistro;
@@ -58,4 +48,9 @@ class Conductor extends CI_Controller {
         $data=array('respuesta'=>$respuesta,'contenido'=>$contenido,'msj'=>$msj);
         echo json_encode($data);
     }
+ 
+
+ 
+
+ 
 }

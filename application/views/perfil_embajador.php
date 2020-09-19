@@ -95,61 +95,53 @@
                     <div class="post">
  
                      <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-4">
                        <center><img class="img-circle img-bordered-sm" src="<?php echo base_url(); ?>data/dist/img/<?php echo $usuario[0]->foto_perfil;?>"  alt="user image" style="width: 200px; height: 200px;" >
 
                         <button class="editar_foto" style="border: none;background: none; color:#ff7f50;"><i class="fas fa-pen " aria-hidden="true"></i></button></center>
-                     </div>
- 
 
-                     <div class="col-md-3">&nbsp;</div>
-
-                      <div class="col-md-6">
                         <div class="user-block">
                       <span class="username">
-                          <a href="#"><?php echo $usuario[0]->nombre.' '.$usuario[0]->apellidopa.' '.$usuario[0]->apellidoma;?></a><br>
-                           <!-- <span style="color: gray;" ><i class="fas fa-medal" style="font-size: 20px;"></i> <?php echo $usuario[0]->descripcion;?></span> -->
+                          <a href="#"><?php echo strtoupper($usuario[0]->nombre.' '.$usuario[0]->apellidopa.' '.$usuario[0]->apellidoma)  ;?></a><br>
+                           <!-- <span style="color: gray;" ><i class="fas fa-medal" style="font-size: 20px;"></i> <?php echo strtoupper( $this->session->userdata('inicio_sesion')["descripcion"]);?></span> -->
                       </span> 
-                      </div>
-                      </div>
 
-                      <div class="col-md-3">&nbsp;</div>
-
-                      <div class="col-md-3">&nbsp;</div>
-
-                      <div class="col-md-6">
-                        <div class="user-block">
                       <span class="username">
                           <?php
                           $str = strtoupper($usuario[0]->descripcion);
                            switch ($usuario[0]->id_opcion) {
                             case '1':
-                              echo "<a href='#' style='color:#CDA434;'><i class='fas fa-medal' style='font-size: 20px;'></i>".$str."</a>";
+                              echo "<a href='#' style='color:#CDA434;'>".strtoupper($this->session->userdata('inicio_sesion')["descripcion"]).' '.strtoupper($str)."</a>";
                               break;
 
                             case '2':
-                              echo "<a href='#' style='color:#7F7679;'><i class='fas fa-medal' style='font-size: 20px;'></i>".$str."</a>";
+                              echo "<a href='#' style='color:#7F7679;'>".strtoupper($this->session->userdata('inicio_sesion')["descripcion"]).' '.strtoupper($str)."</a>";
                               break;
 
                             case '3':
-                              echo "<a href='#' style='color:#565F6B;'><i class='fas fa-medal' style='font-size: 20px;'></i>".$str."</a>";
+                              echo "<a href='#' style='color:#565F6B;'>".strtoupper($this->session->userdata('inicio_sesion')["descripcion"]).' '.strtoupper($str)."</a>";
                               break;
                             
                             default:
-                              echo "<a href='#' style='color:green;'><i class='fas fa-medal' style='font-size: 20px;'></i>".$str."</a>";
+                              echo "<a href='#' style='color:green;'>".strtoupper($this->session->userdata('inicio_sesion')["descripcion"]).' '.strtoupper($str)."</a>";
                               break;
                           }?><br>
                        </span> 
                       </div>
-                      </div>
-
-                      <div class="col-md-3">&nbsp;</div>
 
 
-                      <div class="col-md-2">&nbsp;</div>
+                     </div>
+ 
 
+                   
+ 
                       <div class="col-md-4">
+                         
                         <div class="user-block">
+                          <label>DATOS PERSONALES</label>
+                          <span class="description"><b>Nombre: </b>&nbsp;&nbsp;<?php echo $usuario[0]->nombre;?></span>
+                          <span class="description"><b>Apellido Paterno: </b>&nbsp;&nbsp;<?php echo $usuario[0]->apellidopa;?></span>
+                          <span class="description"><b>Apellido Materno: </b>&nbsp;&nbsp;<?php echo $usuario[0]->apellidoma;?></span>
                           <span class="description"><b>Correo: </b>&nbsp;&nbsp;<?php echo $usuario[0]->email;?></span>
                           <span class="description"><b>Teléfono: </b>&nbsp;&nbsp;<?php echo $usuario[0]->celular;?></span>
                           <span class="description"><b>Direccion</b>&nbsp;&nbsp;<?php echo $usuario[0]->direccion;?></span>
@@ -158,27 +150,18 @@
 
                       <div class="col-md-4">
                         <div class="user-block">
+                           <label>DATOS LABORALES</label>
                           <span class="description"><b>Calificación: </b>&nbsp;&nbsp;<?php echo '4.7';?></span>
                           <span class="description"><b>Fecha de contrato: </b>&nbsp;&nbsp;<?php echo $usuario[0]->fecha_creacion;?></span>
                           
-                        </div>
-                      </div>
-
-                      <div class="col-md-2">&nbsp;</div>
-
-                      <div class="col-md-2">&nbsp;</div>
-
-
-                      <div class="col-md-7">
-                        <div class="user-block">
+           
                           <span class="description"><b>Dias laborables: </b>&nbsp;&nbsp;Lunes - Viernes - Domingo</span>
                           <span class="description"><b>Descripción: </b>&nbsp;&nbsp;<?php echo $usuario[0]->acerca;?></span>
                           <!-- <span class="description"><small>Editar información</small></span> -->
+                        
+                       
+                        <span class="description"><BR><button class="btn btn-primary editar_perfil" value="<?php echo $usuario[0]->id_usuario;?>">Editar información</button></span>
                         </div>
-                      </div>
-
-                      <div class="col-md-3">&nbsp;
-                        <button class="btn btn-primary editar_perfil" value="<?php echo $usuario[0]->id_usuario;?>">Editar información</button>
                       </div>
 
 
