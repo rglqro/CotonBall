@@ -31,6 +31,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJI9v9jqW-RGVNkwnPtiO7AkvXFfCzY8&libraries=geometry,places&v=weekly"></script>
   
- 
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
  
 </head>

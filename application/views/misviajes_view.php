@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tabescalas" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <button type="button" class="btn btn-info btn-sm" onclick="regresar()"><- Regresar</button>
+                            <button type="button" class="btn btn-info" onclick="regresar()"><span class="material-icons">arrow_back</span>Regresar</button>
                             <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
                                 <div class="col-md-8">
                                     <input class="form-control" placeholder="escala" name="escala" id="escala" style="max-width: 50%;"/>
