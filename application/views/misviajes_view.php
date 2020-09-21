@@ -17,10 +17,10 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                          <a class="nav-link active" id="viajesbttab" data-toggle="pill" href="#tabviajes" role="tab" aria-controls="pills-home" aria-selected="true">Viajes</a>
+                          <a class="nav-link active" id="viajesbttab" href="#tabviajes" role="tab" aria-controls="tabviajes" aria-selected="true">Viajes</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="escalasbttab" data-toggle="pill" href="#tabescalas" role="tab" aria-controls="pills-profile" aria-selected="false">Agregando Escalas</a>
+                          <a class="nav-link" id="escalasbttab" href="#tabescalas" role="tab" aria-controls="tabescalas" aria-selected="false">Agregando Escalas</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -71,7 +71,8 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tabescalas" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <div class="row">
+                            <button type="button" class="btn btn-info btn-sm" onclick="regresar()"><- Regresar</button>
+                            <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
                                 <div class="col-md-8">
                                     <input class="form-control" placeholder="escala" name="escala" id="escala" style="max-width: 50%;"/>
                                     <div id="mapa2" style="width: 100%; height: 512px;"></div>
@@ -261,9 +262,10 @@
     }
     
     function mapa_escalas(pos){
-        $('#escalasbttab').trigger('click');
+        $('.nav-pills a[href="#tabescalas"]').tab('show');
         $("#det_viaje").html('');
         $("#v_"+pos).clone().appendTo($("#det_viaje"));
+        $("#det_viaje").append('<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalmarcadores" onclick="rutas('+pos+')">Ruta</button>')
         pos_v=pos;
     }
     
@@ -277,6 +279,10 @@
         if (result.respuesta){
             alert(result.msj);
         }
+    }
+    
+    function regresar(){
+        $('.nav-pills a[href="#tabviajes"]').tab('show');
     }
     
     function enviar(d,url) {
