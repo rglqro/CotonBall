@@ -2,9 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
+<html lang="es_mx">
 <head>
-    <html lang="es_mx">
-
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <title style="font-weight: bold;">COTTON BALL&nbsp;&nbsp;|&nbsp;&nbsp;OFICIAL</title>
 
     <meta charset="utf-8">
@@ -28,8 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
- 
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJI9v9jqW-RGVNkwnPtiO7AkvXFfCzY8&libraries=geometry,places&v=weekly"></script>
   
  
  

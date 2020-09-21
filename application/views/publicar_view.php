@@ -81,7 +81,12 @@
                       <div class="col-md-3">
                           <label for="conductor">Asignar un conductor</label>
                             <select id="conductor" name="conductor" required class="form-control">
-                                <option>--Seleccione una opción--</option>
+                                <option value="">--Seleccione una opción--</option>
+                                <?php
+                                foreach ($conductores ->result() as $fila){
+                                    echo '<option value="'.$fila->id_usuario.'">'.$fila->nombre.' '.$fila->apellidopa.' '.$fila->apellidoma.'</option>';
+                                }
+                                ?>
                             </select>
                       </div>
                       <div class="col-md-6">
@@ -99,10 +104,13 @@
     <!-- /.content -->
   </div>
 
-<script src="../../js/maps.js?v=2"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJI9v9jqW-RGVNkwnPtiO7AkvXFfCzY8&callback=initAutocomplete&libraries=places&v=weekly"></script>
+<script src="../../js/maps.js?v=3"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJI9v9jqW-RGVNkwnPtiO7AkvXFfCzY8&libraries=places&v=weekly"></script>-->
 
 <script type="text/javascript">
+    
+    
+    initAutocomplete();
     $("#form_publicar").submit(function (e){
         e.preventDefault();
         var d = new FormData($(this)[0]);
@@ -112,7 +120,7 @@
             location.reload();
         }
     });
-    
+        
     function enviar(d) {
         var result= JSON.parse("{}");
         $.ajax({

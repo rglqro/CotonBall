@@ -77,6 +77,7 @@ function initAutocomplete() {
     }
 }
 
+
 function setorigendest(pos,searchBox){
     const places = searchBox.getPlaces();
 
@@ -93,7 +94,7 @@ function setorigendest(pos,searchBox){
           return;
         }
         const icon = {
-          url: pos==0?place.icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          url: pos==0?"https://maps.google.com/mapfiles/ms/icons/red-dot.png":"https://maps.google.com/mapfiles/ms/icons/green-dot.png",
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 34),
@@ -107,9 +108,9 @@ function setorigendest(pos,searchBox){
             position: place.geometry.location
           })
           if(pos==0)
-            $("#coord_origen").val(place.geometry.location.lat());
+            $("#coord_origen").val(place.geometry.location.lat()+","+place.geometry.location.lng());
           if(pos==1)
-            $("#coord_destino").val(place.geometry.location.lng());
+            $("#coord_destino").val(place.geometry.location.lat()+","+place.geometry.location.lng());
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
           bounds.union(place.geometry.viewport);
@@ -137,4 +138,5 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
+
 
