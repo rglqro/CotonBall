@@ -197,6 +197,7 @@
                 new google.maps.Marker({
                     position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
                     map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
                      title: "Marcador "+i
                 });
                 rowstbl+='<tr class="escala"><td>'+id.direccion+'</td><td>'+i+'</td></tr>';

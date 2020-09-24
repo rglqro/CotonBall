@@ -429,6 +429,8 @@ h6{
     
     $("#form_buscar").submit(function (e){
         e.preventDefault();
+        viajes=[];
+        i=0;
         var fd = new FormData($(this)[0]);
         traeviajes(fd);
     });
