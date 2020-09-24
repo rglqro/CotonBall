@@ -93,7 +93,7 @@
 </div>
 
 <div class="modal fade" role="dialog" id="modalmarcadores">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Puntos de recorrido ruta</h5>
@@ -102,7 +102,24 @@
         </button>
       </div>
       <div class="modal-body">
-          <div id="mapa1" style="width: 100%; height: 512px;"></div>
+          <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <div id="mapa1" style="width: 100%; height: 512px;"></div>
+            </div>
+              <div class="col-md-4 col-sm-4" style="overflow-y: scroll;">
+                <h4>Puntos de recorrido</h4>
+                <table class="table table-sm" id="tblpuntos">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Dirección</th>
+                      <th scope="col"># Marcador</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -121,6 +138,7 @@
     var markersArray = [];
     var coord_escala="",direccion_escala="";
     var pos_v=0;
+    var rowstbl="";
     function initMap() {
         map  = new google.maps.Map(document.getElementById("mapa1"), {
             zoom: 5,
@@ -155,32 +173,39 @@
         markersArray.push(new google.maps.Marker({
                     position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
                     title: viajes[pos].origen
-                    ,map: map
+                    ,map: map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/red-dot.png"
                 }));
         map.setCenter(markersArray[0].getPosition());
         markersArray.push(new google.maps.Marker({
                     position: { lat: parseFloat(coord2[0]), lng: parseFloat(coord2[1]) },
                     title: viajes[pos].destino,
-                    map: map
+                    map: map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/green-dot.png"
                 }));
         map.setCenter(markersArray[1].getPosition());
         
         var d = new FormData();
         d.append("idregistro",viajes[pos].id_viaje);
         var result = enviar(d,"getparadas_viaje");
+        rowstbl='<tr class="origen"><td><b>Origen: </b>'+viajes[pos].origen+'</td><td>1</td></tr>';
+        var i=2;
         if (result.respuesta){
-            
             $.each(JSON.parse(result.data),function(index, id){
                 console.log('My array has at position ' + index + ', this value: ' + id);
                 coord = id.coord.toString().split(",");
                 new google.maps.Marker({
                     position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
                     map,
-                    title: id.direccion
+                     title: "Marcador "+i
                 });
+                rowstbl+='<tr class="escala"><td>'+id.direccion+'</td><td>'+i+'</td></tr>';
+                i++;
             });
             
         }
+        rowstbl+='<tr class="destino"><td><b>Destino: </b>'+viajes[pos].destino+'</td><td>'+i+'</td></tr>';
+        $("#tblpuntos tbody").html(rowstbl);
     }
     
     function setMapOnAll(mapa) {
@@ -308,7 +333,17 @@
     
   </script>
   
-  
+  <style type="text/css">
+      .origen{
+          background-color: orangered;
+      }
+      .escala{
+          background-color: lightblue;
+      }
+      .destino{
+          background-color: lightgreen;
+      }
+  </style>
   
 <?php
     require("footer_private.php");

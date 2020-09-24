@@ -14,9 +14,8 @@
 <link rel="stylesheet" type="text/css" href="<?=base_url("data/dist/css/adminlte.min.css")?>">
 <link rel="stylesheet" type="text/css" href="<?= base_url("dist/css/font-awesome.min.css")?>">
 
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJI9v9jqW-RGVNkwnPtiO7AkvXFfCzY8&libraries=geometry,places&v=weekly"></script>
 <style type="text/css">
   *{
     outline: none;
@@ -278,7 +277,15 @@ h6{
   color: red; 
   font-size: 1em; 
 }
-
+.origen{
+    background-color: orangered;
+  }
+  .escala{
+      background-color: lightblue;
+  }
+  .destino{
+      background-color: lightgreen;
+  }
 
 
 </style>
@@ -326,270 +333,33 @@ h6{
         </div>
 
         <br>
-        
-        <div class="row">
-          <div class="col-md-1">&nbsp;</div>
-          <div class="col-md-2"><label>Origen</label><input type="text" name="origen" class="form-control" placeholder="Origen de su viaje"></div>
-          <div class="col-md-2"><label>Destino</label><input type="text" name="destino" class="form-control" placeholder="Destino de su viaje"></div>
-          <div class="col-md-2"><label>Fecha</label><input type="text" name="fecha" class="form-control" placeholder="Fecha de su viaje"></div>
-          <div class="col-md-2"><label>Horario</label><input type="text" name="horario" class="form-control" placeholder="Horario de su viaje"></div>
-          <div class="col-md-2"><label>&nbsp;    </label><input type="button" name="buscar" class="form-control" value="Buscar" style="background-color: #393d42;color: white;"></div>
-          <div class="col-md-1">&nbsp;</div>
-        </div>
+        <form id="form_buscar">
+            <div class="row">
 
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-2"><label>Origen</label><input type="text" name="origen" class="form-control" placeholder="Origen de su viaje"></div>
+                <div class="col-md-2"><label>Destino</label><input type="text" name="destino" class="form-control" placeholder="Destino de su viaje"></div>
+                <div class="col-md-2"><label>Fecha</label><input type="date" name="fecha" class="form-control" placeholder="Fecha de su viaje"></div>
+                <div class="col-md-2"><label>Horario</label><input type="time" name="horario" class="form-control" placeholder="Horario de su viaje"></div>
+                <div class="col-md-2"><label>&nbsp;    </label><input type="submit" name="buscar" class="form-control" value="Buscar" style="background-color: #393d42;color: white;"></div>
+                <div class="col-md-1">&nbsp;</div>
+
+            </div>
+        </form>
         <br><br>
-
+        
 
 
    <div class="row" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 5, 1, 0.5)), url('<?php echo base_url(); ?>dist/img/conduc_1.jpg') no-repeat center; background-size:cover; min-height: 45vh; line-height:normal;">
     <div class="col-md-12"></div>
-
- 
-
-
-<div class="card-body pb-0">
-          <div class="row d-flex align-items-stretch">
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
+    <script type="text/javascript">/*Conserva los datos de los viajes*/
+        var viajes=[];
+        var i=0;
+    </script>
+        <div class="card-body pb-0">
+            <div class="row d-flex align-items-stretch" id="div_viajes">    
             </div>
-
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-3 col-sm-3 col-md-3 align-items-stretch">
-              <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  VIAJES COTTON BALL
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>CONDUCTOR:</b>KELYN HERNÁNDEZ</h2>
-                      <p class="text-muted text-sm"><b>Ruta: </b>QUERETARO- CDMX</p>
-                      <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: 12</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: 12:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="background: #CFCFCF;">
-                  <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal mensaje_viaje" title="Enviar mensaje" value="'.$viajes_gestionar->id_viaje.'">
-                      <i class="fas fa-comments"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary" title="Gesionar Viaje" value="'.$viajes_gestionar->origen.'">
-                      <i class="fas fa-user"></i> Gestionar Viaje
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-</div>
-</div>
-
-
-
-
-
-
-
- 
-
+        </div>
    </div>  
 
 
@@ -597,7 +367,43 @@ h6{
     </div>
     
      </header>
- 
+
+<div class="modal fade" role="dialog" id="modalmarcadores">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Puntos de recorrido ruta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <div id="mapa1" style="width: 100%; height: 512px;"></div>
+            </div>
+              <div class="col-md-4 col-sm-4" style="overflow-y: scroll;">
+                <h4>Puntos de recorrido</h4>
+                <table class="table table-sm" id="tblpuntos">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Dirección</th>
+                      <th scope="col"># Marcador</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>      
+
  <?php include "footer_principal.php";?>
 </div>
 <!-- ./wrapper -->
@@ -616,6 +422,120 @@ h6{
 
 
  <script>
+    
+    $(document).ready(function (e){
+        traeviajes(new FormData());
+    });
+    
+    $("#form_buscar").submit(function (e){
+        e.preventDefault();
+        var fd = new FormData($(this)[0]);
+        traeviajes(fd);
+    });
+    
+    function traeviajes(filtros){
+        var result = enviar(filtros,"Buscar/trae_viajes");
+        if (result.respuesta){
+            $("#div_viajes").html(result.contenido);
+        }else
+            $("#div_viajes").html("<h4>NO HAY VIAJES DISPONIBLES</h4>");
+    }
+    
+    
+    let markers = [];
+    var latubi=0.0,lngubi=0.0;
+    let map,map2;
+    var markersArray = [];
+    var coord_escala="",direccion_escala="";
+    var pos_v=0;
+    var rowstbl="";
+    function initMap() {
+        map  = new google.maps.Map(document.getElementById("mapa1"), {
+            zoom: 5,
+            mapTypeId: "roadmap"
+        });
+        var geocoder = new google.maps.Geocoder();
+        
+        geocoder.geocode( {'address' : "Mexico"}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+            }
+        });         
+        
+    }
+    
+    
+    $(document).ready(function(){
+        $('#modalmarcadores').on('shown.bs.modal',function(){
+           google.maps.event.trigger(map, "resize");
+        });
+        initMap();
+    });
+    
+    
+    
+    function rutas (pos){
+        initMap();
+        var coord = viajes[pos].coord_origen.toString().split(",");
+        var coord2 = viajes[pos].coord_destino.toString().split(",");
+        
+        markersArray.push(new google.maps.Marker({
+                    position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
+                    title: viajes[pos].origen
+                    ,map: map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }));
+        map.setCenter(markersArray[0].getPosition());
+        markersArray.push(new google.maps.Marker({
+                    position: { lat: parseFloat(coord2[0]), lng: parseFloat(coord2[1]) },
+                    title: viajes[pos].destino,
+                    map: map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                }));
+        map.setCenter(markersArray[1].getPosition());
+        
+        var d = new FormData();
+        d.append("idregistro",viajes[pos].id_viaje);
+        var result = enviar(d,"Conductor/getparadas_viaje");
+        rowstbl='<tr class="origen"><td><b>Origen: </b>'+viajes[pos].origen+'</td><td>1</td></tr>';
+        var i=2;
+        if (result.respuesta){
+            $.each(JSON.parse(result.data),function(index, id){
+                coord = id.coord.toString().split(",");
+                new google.maps.Marker({
+                    position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
+                    map,
+                    icon:"https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                    title: "Marcador "+i
+                });
+                rowstbl+='<tr class="escala"><td>'+id.direccion+'</td><td>'+i+'</td></tr>';
+                i++;
+            });
+        }
+        rowstbl+='<tr class="destino"><td><b>Destino: </b>'+viajes[pos].destino+'</td><td>'+i+'</td></tr>';
+        $("#tblpuntos tbody").html(rowstbl);
+    }
+    
+     function enviar(d,url) {
+        var result= JSON.parse("{}");
+        $.ajax({
+            processData: false,
+            contentType: false,
+            type: "POST",
+            url: url,
+            data: d,
+            dataType: "json",
+            async: false,
+            success: function(data) {
+                // Run the code here that needs
+                result = data;
+            },
+            error: function() {
+                alert('Error occured');
+            }
+        });
+        return result;
+    }
    
 
 $("#formulario_quiero_ser_Buscar").submit( function(e) {
