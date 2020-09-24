@@ -135,7 +135,7 @@
     let markers = [];
     var latubi=0.0,lngubi=0.0;
     let map,map2;
-    var markersArray = [];
+    var markersregistrados = [];
     var coord_escala="",direccion_escala="";
     var pos_v=0;
     var rowstbl="";
@@ -170,20 +170,20 @@
         var coord = viajes[pos].coord_origen.toString().split(",");
         var coord2 = viajes[pos].coord_destino.toString().split(",");
         
-        markersArray.push(new google.maps.Marker({
+        markersregistrados.push(new google.maps.Marker({
                     position: { lat: parseFloat(coord[0]), lng: parseFloat(coord[1]) },
                     title: viajes[pos].origen
                     ,map: map,
                     icon:"https://maps.google.com/mapfiles/ms/icons/red-dot.png"
                 }));
-        map.setCenter(markersArray[0].getPosition());
-        markersArray.push(new google.maps.Marker({
+        map.setCenter(markersregistrados[0].getPosition());
+        markersregistrados.push(new google.maps.Marker({
                     position: { lat: parseFloat(coord2[0]), lng: parseFloat(coord2[1]) },
                     title: viajes[pos].destino,
                     map: map,
                     icon:"https://maps.google.com/mapfiles/ms/icons/green-dot.png"
                 }));
-        map.setCenter(markersArray[1].getPosition());
+        map.setCenter(markersregistrados[1].getPosition());
         
         var d = new FormData();
         d.append("idregistro",viajes[pos].id_viaje);
@@ -209,20 +209,25 @@
         $("#tblpuntos tbody").html(rowstbl);
     }
     
-    function setMapOnAll(mapa) {
+    function setMapOnAll(markers,mapa) {
         for (let i = 0; i < markers.length; i++) {
-          markersArray[i].setMap(mapa);
+          markers[i].setMap(mapa);
         }
         if(mapa==null)
-            markersArray=[];
+            markers=[];
     }
     
-    function initAutocomplete() {
-    
+    function iniinputBusq(){
         map2  = new google.maps.Map(document.getElementById("mapa2"), {
             zoom: 5,
             mapTypeId: "roadmap"
         });
+        initAutocomplete();
+    }
+    
+    function initAutocomplete() {
+    
+        
         var geocoder = new google.maps.Geocoder();
 
         geocoder.geocode( {'address' : "Mexico"}, function(results, status) {
@@ -254,8 +259,8 @@
 
     }
     
-    initAutocomplete();
-    
+    iniinputBusq();
+
     function setorigendest(pos,searchBox){
         const places = searchBox.getPlaces();
 
@@ -301,10 +306,15 @@
         d.append("id_viaje",viajes[pos_v].id_viaje);
         d.append("coord",coord_escala);
         d.append("direccion",$("#escala").val());
-        var result = enviar(d,"acciones_escalas");
-        if (result.respuesta){
-            alert(result.msj);
-        }
+        if($("#escala").val()!=''){
+            var result = enviar(d,"acciones_escalas");
+            if (result.respuesta){
+                alert(result.msj);
+                setMapOnAll(markers,null);
+                initAutocomplete();
+            }
+        }else
+            alert("No ha escrito nada aún");
     }
     
     function regresar(){
