@@ -123,7 +123,7 @@
               # code...
             echo "<li class='nav-item has-treeview'><a href='".site_url("Embajador/perfil")."' class='nav-link'><i class='nav-icon fa fa-user'></i> <p> Perfil </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Conductor/saldos")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Saldos </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Conductor/recargas")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Saldos </p></a></li>";
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Conductor/publicar")."' class='nav-link'><i class='nav-icon fa fa-th'></i> <p> Publicar </p></a></li>";
 
@@ -147,7 +147,7 @@
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Viajeros </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Recargas </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/recargas")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Recargas </p></a></li>";
 
             echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reestablecer </p></a></li>";
 

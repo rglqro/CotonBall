@@ -72,12 +72,27 @@
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-md-3">
+                   <!--    <div class="col-md-3">
                           <label for="vehiculo">Vehículo con placas</label>
                             <select id="vehiculo" name="vehiculo" required class="form-control">
                                 <option>--Seleccione una opción--</option>
                             </select>
                       </div>
+ -->
+
+                      <div class="col-md-3">
+                          <label for="unidades">Seleccionar un vehículo</label>
+                            <select id="unidades" name="unidades" required class="form-control">
+                                <option value="">--Seleccione una opción--</option>
+                                <?php
+                                foreach ($unidades ->result() as $fila){
+                                    echo '<option value="'.$fila->id_unidad.'">'.$fila->modelo.' - '.$fila->caracteristicas.'</option>';
+                                }
+                                ?>
+                            </select>
+                      </div>
+
+
                       <div class="col-md-3">
                           <label for="conductor">Asignar un conductor</label>
                             <select id="conductor" name="conductor" required class="form-control">

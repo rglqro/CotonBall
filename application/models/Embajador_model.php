@@ -14,7 +14,10 @@ class Embajador_model extends CI_Model
 
 
      function getInformacionPerfil(){
-        $query =  $this->db->query("SELECT u.id_usuario, u.nombre, u.apellidopa, u.apellidoma, u.celular, u.email, u.fecha_creacion, u.direccion, u.acerca, oc.descripcion, oc.id_opcion, u.foto_perfil FROM usuarios u INNER JOIN opciones_catalogo oc ON u.tipo_usuario = oc.id_opcion WHERE u.id_usuario = ".$this->session->userdata('inicio_sesion')["id_usuario"]." AND oc.id_catalogo = 3");
+        $query =  $this->db->query("SELECT u.id_usuario, u.nombre, u.apellidopa, u.apellidoma, u.celular, u.email, u.fecha_creacion, u.direccion, u.acerca, oc.descripcion, oc.id_opcion, u.foto_perfil, dl.lunes, dl.martes, dl.miercoles, dl.jueves, dl.viernes, dl.sabado, dl.domingo
+            FROM usuarios u 
+            INNER JOIN opciones_catalogo oc ON u.tipo_usuario = oc.id_opcion 
+            INNER JOIN dias_laborables dl ON dl.id_trabajador = u.id_usuario WHERE u.id_usuario = ".$this->session->userdata('inicio_sesion')["id_usuario"]." AND oc.id_catalogo = 3");
 
         return $query->result();
     }
@@ -76,14 +79,78 @@ class Embajador_model extends CI_Model
   ///////////7
 
 
-       function subir_foto($value_photo){
+function subir_foto($value_photo){
         return $this->db->query("UPDATE usuarios SET foto_perfil = '".$value_photo."' WHERE id_usuario = ".$this->session->userdata('inicio_sesion')["id_usuario"]."");
 }
 
 
 
 
-    
+  
+
+public function datos_labora($valor){
+   return $this->db->query("SELECT acerca, lunes, martes, miercoles, jueves, viernes, sabado, domingo FROM usuarios INNER JOIN dias_laborables ON usuarios.id_usuario = dias_laborables.id_trabajador WHERE id_trabajador = ".$this->session->userdata('inicio_sesion')["id_usuario"]."");
+  }
+
  
+
+
+
+function udpdate_lunesnull($value){
+        return $this->db->query("UPDATE dias_laborables SET lunes = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_lunes($value){
+        return $this->db->query("UPDATE dias_laborables SET lunes = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_martesnull($value){
+        return $this->db->query("UPDATE dias_laborables SET martes = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_martes($value){
+        return $this->db->query("UPDATE dias_laborables SET martes = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_miercolesnull($value){
+        return $this->db->query("UPDATE dias_laborables SET miercoles = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_miercoles($value){
+        return $this->db->query("UPDATE dias_laborables SET miercoles = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_juevesnull($value){
+        return $this->db->query("UPDATE dias_laborables SET jueves = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_jueves($value){
+        return $this->db->query("UPDATE dias_laborables SET jueves = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_viernesnull($value){
+        return $this->db->query("UPDATE dias_laborables SET viernes = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_viernes($value){
+        return $this->db->query("UPDATE dias_laborables SET viernes = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_sabadonull($value){
+        return $this->db->query("UPDATE dias_laborables SET sabado = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_sabado($value){
+        return $this->db->query("UPDATE dias_laborables SET sabado = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+function udpdate_domingonull($value){
+        return $this->db->query("UPDATE dias_laborables SET domingo = null WHERE id_trabajador = ".$value."");
+}
+function udpdate_domingo($value){
+        return $this->db->query("UPDATE dias_laborables SET domingo = 1 WHERE id_trabajador = ".$value."");
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+
+function udpdate_desc($id, $desc){
+        return $this->db->query("UPDATE usuarios SET acerca = '".$desc."' WHERE id_usuario = ".$id."");
+}
+
+
+
  	
 }

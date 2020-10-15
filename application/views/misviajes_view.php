@@ -31,21 +31,20 @@
                             foreach ($viajes->result() as $fila){
                                 echo '<div class="col-3 col-sm-3 col-md-3 align-items-stretch">
                                 <div class="card bg-light">
-                                  <div class="card-header text-muted border-bottom-0">
-                                    VIAJES COTTON BALL
-                                  </div>
-                                  <div class="card-body pt-0" id="v_'.$i.'">
+                                  
+
+                                  <br><div class="card-body pt-0" id="v_'.$i.'">
                                     <div class="row">
-                                      <div class="col-7">
-                                        <h2 class="lead"><b>CONDUCTOR:</b>'.$fila->nombre.' '.$fila->apellidopa.' '.$fila->apellidoma.'</h2>
+                                      <div class="col-12">
+                                        <h5 class="lead"><b>CONDUCTOR:</b><br>'.$fila->nombre.' '.$fila->apellidopa.' '.$fila->apellidoma.'</h5>
                                         <p class="text-muted text-sm"><b>Origen: </b>'.$fila->origen.'</p>
                                         <p class="text-muted text-sm"><b>Destino: </b>'.$fila->destino.'</p>
                                         <p class="text-muted text-sm"><b>Paradas: </b>OBRERA, CENTRAR N</p>
                                         <ul class="ml-4 mb-0 fa-ul text-muted">
                                           <li class="small"><span class="fa-li"><i class="fas fa-lg fa-chevron-right"></i></span> Plazas: '.$fila->pasajeros.'</li>
-                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: '.$fila->fechaviaje.' '.$fila->hora.'</li>
-                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: 4:00 PM</li>
-                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: TOYOTA</li>
+                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Salida: '.$fila->fechaviaje.'</li>
+                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-clock"></i></span> Llegada: '.$fila->hora.' </li>
+                                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-bus"></i></span> Vehículo: '.$fila->modelo.'</li>
                                         </ul>
                                       </div>
                                       <div class="col-5 text-center">
@@ -74,7 +73,7 @@
                             <button type="button" class="btn btn-info" onclick="regresar()"><span class="material-icons">arrow_back</span>Regresar</button>
                             <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
                                 <div class="col-md-8">
-                                    <input class="form-control" placeholder="escala" name="escala" id="escala" style="max-width: 50%;"/>
+                                    <input class="form-control" placeholder="Escala a agregar" name="escala" id="escala" style="max-width: 50%;"/>
                                     <div id="mapa2" style="width: 100%; height: 512px;"></div>
                                 </div>
                                 <div class="col-md-4" id="det_viaje">
@@ -139,6 +138,9 @@
     var coord_escala="",direccion_escala="";
     var pos_v=0;
     var rowstbl="";
+    
+    const input = document.getElementById("escala");
+    
     function initMap() {
         map  = new google.maps.Map(document.getElementById("mapa1"), {
             zoom: 5,
@@ -222,23 +224,9 @@
             zoom: 5,
             mapTypeId: "roadmap"
         });
-        initAutocomplete();
-    }
-    
-    function initAutocomplete() {
-    
         
-        var geocoder = new google.maps.Geocoder();
-
-        geocoder.geocode( {'address' : "Mexico"}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map2.setCenter(results[0].geometry.location);
-            }
-        });
-    
-    
         // Create the search box and link it to the UI element.
-        const input = document.getElementById("escala");
+        
         const searchBox = new google.maps.places.SearchBox(input,
         {
             types: ['(cities)'],
@@ -256,6 +244,26 @@
         searchBox.addListener("places_changed", () => {
             setorigendest(0,searchBox);
         });
+        
+        initAutocomplete();
+    }
+    
+    
+    
+    function initAutocomplete() {
+    
+        
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode( {'address' : "Mexico"}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map2.setCenter(results[0].geometry.location);
+                map2.setZoom(5);
+            }
+        });
+    
+    
+        
 
     }
     
@@ -312,6 +320,7 @@
                 alert(result.msj);
                 setMapOnAll(markers,null);
                 initAutocomplete();
+                $("#escala").val("");
             }
         }else
             alert("No ha escrito nada aún");

@@ -87,7 +87,7 @@
 
         <div class="form-group has-feedback col-md-4">
           <label style="color: gray;">Celular</label>
-          <input type="number" max="10" id="celular" name="celular" class="form-control" placeholder="Numero Celular" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
+          <input type="number" maxlength="10" id="celular" name="celular" class="form-control" placeholder="Numero Celular" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
         </div>
         </div>
 
@@ -97,7 +97,7 @@
         <div class="row">
         <div class="form-group has-feedback col-md-6">
           <label style="color: gray;">Usuario</label>
-          <input type="text" id="usuario" name="usuario" max="10" class="form-control" placeholder="Usuario" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
+          <input type="text" id="usuario" name="usuario" maxlength="10" class="form-control" placeholder="Usuario" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
         </div>
 
         <div class="form-group has-feedback col-md-6">

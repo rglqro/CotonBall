@@ -7,7 +7,7 @@ $contenido='';
 $data=array();
 $idregistro = (isset($_POST["idregistro"])?$_POST["idregistro"]:0);
 
-class Conductor extends CI_Controller {
+class Administrador extends CI_Controller {
 
   public function __construct(){
     parent::__construct();
@@ -104,18 +104,11 @@ class Conductor extends CI_Controller {
 
 
       public function recargas(){
-    // $datos=array();
-    // $datos["usuario"]= $this->Conductor_model->getInformacionRecargas($this->session->userdata('inicio_sesion')["id_usuario"]); 
-
-    $this->load->view('vista_recargas_conductor');
+ 
+    $this->load->view('vista_recargas_admin');
 
     }
-
-  //   public function ver_mis_recargas(){
-  //   echo json_encode(  $this->Conductor_model->ver_mis_recargas()->result_array() );
-  // }
-
-
+ 
 
   
     public function ver_mis_recargas(){
@@ -124,6 +117,9 @@ class Conductor extends CI_Controller {
        echo json_encode( array( "data" => $data ));
      }
     
+
+
+    lista_cond
 
 
 

@@ -15,6 +15,7 @@ class Embajador extends CI_Controller {
   public function perfil(){
     $datos=array();
     $datos["usuario"]= $this->Embajador_model->getInformacionPerfil($this->session->userdata('inicio_sesion')["id_usuario"]); 
+
     $this->load->view('perfil_embajador',$datos);
 
     }
@@ -31,6 +32,8 @@ class Embajador extends CI_Controller {
        $datos=array();
        // $datos["viajes_gestionar"]= $this->Embajador_model->getListViajesTodos(); 
       $datos['viajes_gestionar'] = json_decode( json_encode( $this->Embajador_model->getListViajesTodos()->result_array()));            
+
+       
 
        $this->load->view('gestiones_embajador',$datos);
   }
@@ -54,7 +57,7 @@ class Embajador extends CI_Controller {
   }
 
 
-     public function datos_conductor_viaje($valor){
+     public function get_driver_new_chat($valor){
     echo json_encode( $this->Embajador_model->get_driver_new_chat($valor)->result_array() );
   }
 
@@ -131,9 +134,132 @@ echo false;
 
 
 
-  
 
 
+
+function update_informacion(){
+ $respuesta = array( FALSE );
+
+ 
+if($this->input->post('cb-desc')){
+
+
+
+$desc = $this->input->post('cb-desc');
+$id = $this->session->userdata('inicio_sesion')["id_usuario"];
+$lunes = $this->input->post('cb-lunes');
+$martes = $this->input->post('cb-martes');
+$miercoles = $this->input->post('cb-miercoles');
+$jueves = $this->input->post('cb-jueves');
+$viernes = $this->input->post('cb-viernes');
+$sabado = $this->input->post('cb-sabado');
+$domingo = $this->input->post('cb-domingo');
+
+if(empty($lunes)){
+  $respuesta = $this->Embajador_model->udpdate_lunesnull($id);
+}
+else if($lunes!=0){
+  $respuesta = $this->Embajador_model->udpdate_lunes($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($martes)){
+  $respuesta = $this->Embajador_model->udpdate_martesnull($id);
+}
+else if($martes!=0){
+  $respuesta = $this->Embajador_model->udpdate_martes($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($miercoles)){
+  $respuesta = $this->Embajador_model->udpdate_miercolesnull($id);
+}
+else if($miercoles!=0){
+  $respuesta = $this->Embajador_model->udpdate_miercoles($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($jueves)){
+  $respuesta = $this->Embajador_model->udpdate_juevesnull($id);
+}
+else if($jueves!=0){
+  $respuesta = $this->Embajador_model->udpdate_jueves($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($viernes)){
+  $respuesta = $this->Embajador_model->udpdate_viernesnull($id);
+}
+else if($viernes!=0){
+  $respuesta = $this->Embajador_model->udpdate_viernes($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($sabado)){
+  $respuesta = $this->Embajador_model->udpdate_sabadonull($id);
+}
+else if($sabado!=0){
+  $respuesta = $this->Embajador_model->udpdate_sabado($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+if(empty($domingo)){
+  $respuesta = $this->Embajador_model->udpdate_domingonull($id);
+}
+else if($domingo!=0){
+  $respuesta = $this->Embajador_model->udpdate_domingo($id);
+}
+else{
+  $respuesta = true;
+}
+//////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////
+if(!empty($desc)&& $desc!=''){
+  $respuesta = $this->Embajador_model->udpdate_desc($id, $desc);
+}
+else{
+  $respuesta = true;
+}
+
+
+// $respuesta = $this->Embajador_model->udpdate_info($foto_data);
+
+}
+else
+{
+echo false;
+}
+
+ echo json_encode( $respuesta );
+
+
+
+}
+
+
+
+
+
+
+public function datos_labora($valor){
+  echo json_encode( $this->Embajador_model->datos_labora($valor)->result_array() );
+}
+ 
 
 
     
