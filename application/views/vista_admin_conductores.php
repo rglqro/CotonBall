@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Mis recargas</h1>
+            <h1>Conductores</h1>
           </div>
  
         </div>
@@ -47,14 +47,26 @@
               <table id="tabla_pagos_embajador" name="tabla_pagos_embajador" class="table table-responsive table-bordered table-striped table-hover">
                  <thead style="background: #353A40;">
                 <tr>
-                  <th>ID</th>
+     <!--              <th>ID</th>
                   <th>Conductor</th>
                   <th>Monto</th>
                   <th>Fecha recarga</th>
                   <th>Saldo agregado</th>
                   <th>Estatus</th>
                   <th>Más</th>
-                  <th>Más</th>
+                  <th>Más</th> -->
+
+
+                  <th>ID</th>
+                  <th>NOMBRE</th>
+                  <th>TELÉFONO</th>
+                  <th>EMAIL</th>
+                  <th>DIAS LABORALES</th>
+                  <th>ESTATUS</th>
+                  <th>MÁS</th>
+                  <!-- <th>Más</th>  -->
+
+
                 </tr>
                 </thead>
               </table> 
@@ -151,41 +163,41 @@ $("#tabla_pagos_embajador").ready( function () {
     {
       "width": "5%",
       "data": function( d ){
-        return '<p style="font-size: .9em">'+d.id_recarga+'</p>';
+        return '<p style="font-size: .9em">'+d.id_usuario+'</p>';
       }
     },
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em">'+d.conductor+'</p>';
+        return '<p style="font-size: .9em">'+d.id_usuario+'</p>';
       }
     },
 
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em">'+formatMoney(d.monto)+'</p>';
+        return '<p style="font-size: .9em">'+formatMoney(d.id_usuario)+'</p>';
       }
     },
  
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em">$ '+d.fecha_creacion+'</p>';
+        return '<p style="font-size: .9em">$ '+d.id_usuario+'</p>';
       }
     },
 
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em">$ '+formatMoney(d.monto)+'</p>';
+        return '<p style="font-size: .9em">$ '+formatMoney(d.id_usuario)+'</p>';
       }
     },
 
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em"><b>'+d.estatus+'</b></p>';
+        return '<p style="font-size: .9em"><b>'+d.id_usuario+'</b></p>';
       }
     },
 
@@ -193,7 +205,7 @@ $("#tabla_pagos_embajador").ready( function () {
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em"><b>'+d.estatus+'</b></p>';
+        return '<p style="font-size: .9em"><b>'+d.id_usuario+'</b></p>';
       }
     }
 
@@ -201,7 +213,7 @@ $("#tabla_pagos_embajador").ready( function () {
 
     ],
     "ajax": {
-      "url": url2 + "Conductor/ver_mis_recargas",
+      "url": url2 + "Conductor/lista_conductores",
       "type": "POST",
       cache: false,
     }

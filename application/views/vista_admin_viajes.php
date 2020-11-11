@@ -5,6 +5,30 @@
 ?>  
  
  
+
+  <div class="modal fade" id="modal_nueva" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+           <!--  <div class="modal-header bg-primary">
+              <h5 class="modal-title">Editar información personal.</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            </div> -->
+
+            <form method="post" id="formulario_edicion_embajador">
+                <div class="modal-body">
+                  <select class="form-control myselect" id="selectCliente" name="selectCliente" required style="width:100%;" /></select>
+                </div>
+            </form>
+ 
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,7 +36,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Mis recargas</h1>
+            <h1>Recargas</h1>
           </div>
  
         </div>
@@ -31,7 +55,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header p-2">
-                <p style="color: gray"><i class="fa fa-info-circle"></i>&nbsp;<small>En este apartado podrás visualizar todas las recargas abonadas a tu cuenta.</small></p>
+                <p style="color: gray"><i class="fa fa-info-circle"></i>&nbsp;<small>En este apartado podrás realizar recargas a los conductores.</small></p>
               </div>
               <div class="card-body">
                 <div class="tab-content">
@@ -42,19 +66,20 @@
                      <div class="row">
                       <div class="col-md-12">
                  
-                       <label>&nbsp;Total: $<input style="border-bottom: none; border-top: none; border-right: none; border-left: none; background: white;" disabled="disabled" readonly="readonly" type="text" name="totalPagos" id="totalPagos"></label>
+                       <label>&nbsp;Total recargas: $<input style="border-bottom: none; border-top: none; border-right: none; border-left: none; background: white;" disabled="disabled" readonly="readonly" type="text" name="totalPagos" id="totalPagos"></label>
+                       <button class="btn btn-warning agregar_nueva">NUEVA RECARGA</button>
 
               <table id="tabla_pagos_embajador" name="tabla_pagos_embajador" class="table table-responsive table-bordered table-striped table-hover">
                  <thead style="background: #353A40;">
                 <tr>
                   <th>ID</th>
-                  <th>Conductor</th>
+                  <th>Usuario</th>
                   <th>Monto</th>
                   <th>Fecha recarga</th>
                   <th>Saldo agregado</th>
                   <th>Estatus</th>
-                  <th>Más</th>
-                  <th>Más</th>
+                  <!-- <th>Más</th> -->
+                  <!-- <th>Más</th> -->
                 </tr>
                 </thead>
               </table> 
@@ -171,7 +196,7 @@ $("#tabla_pagos_embajador").ready( function () {
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em">$ '+d.fecha_creacion+'</p>';
+        return '<p style="font-size: .9em">'+d.fecha_creacion+'</p>';
       }
     },
 
@@ -185,19 +210,11 @@ $("#tabla_pagos_embajador").ready( function () {
     {
       "width": "15%",
       "data": function( d ){
-        return '<p style="font-size: .9em"><b>'+d.estatus+'</b></p>';
+        return '<p style="font-size: .9em"><b>ABONADO</b></p>';
       }
     },
 
-
-    {
-      "width": "15%",
-      "data": function( d ){
-        return '<p style="font-size: .9em"><b>'+d.estatus+'</b></p>';
-      }
-    }
-
-
+ 
 
     ],
     "ajax": {
@@ -223,6 +240,39 @@ $("#tabla_pagos_embajador").ready( function () {
         table_pagos.columns.adjust();
       
     });
+
+
+     $( ".agregar_nueva" ).click(function() {
+      // id_usuario = $(this).val();
+
+      $("#modal_nueva .modal-body").html("");
+      $("#modal_nueva .modal-body").append('<div class="row"><div class="col-md-12">');
+      $("#modal_nueva .modal-body").append('<br><div class="row"><div class="col-md-12"><center>'
+            +'<input type="submit" class="btn btn-success" style="margin-right:15px;" value="GUARDAR CAMBIOS"></center>'
+            +'</div></div>');
+
+       
+    $("#modal_nueva").modal();
+
+
+});
+
+
+
+
+
+$(".myselect").select2();
+$("#selectCliente").ready(function(){
+$("#selectCliente").append('<option value="">Seleccione un cliente</option>');
+$.getJSON( url2 + "Admin/lista_cond").done( function( data ){
+ $.each( data, function(i, v){
+     $("#selectCliente").append('<option value="'+v.id_cliente+'" data-value="'+v.id_cobro+'">'+v.nombre+'</option>');
+ });
+});
+});
+
+
+
 
 
 </script>

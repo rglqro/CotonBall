@@ -25,7 +25,7 @@ class Administrador extends CI_Controller {
 
   //   }
 
-    public function publicar(){
+    public function publfrecargaicar(){
         $squ="select * from unidades;";
         $sql="select * from usuarios where perfil=2;"; 
         $query0 = $this->db->query($squ);
@@ -33,11 +33,11 @@ class Administrador extends CI_Controller {
         $this->load->view("publicar_view",array('conductores'=>$query1, 'unidades'=>$query0));
     }
 
-    public function viajes(){
-        $sql="SELECT v.*,c.nombre,c.apellidopa,c.apellidoma,c.foto_perfil, u.modelo FROM viajes v JOIN usuarios c ON c.id_usuario=v.id_conductor JOIN unidades u ON U.id_unidad = v.id_unidad WHERE v.status = 1 ORDER BY v.fechaviaje,v.hora DESC;";
-        $query1 = $this->db->query($sql);
-        $this->load->view("misviajes_view",array('viajes'=>$query1));
-    }
+    // public function viajes(){
+    //     $sql="SELECT v.*,c.nombre,c.apellidopa,c.apellidoma,c.foto_perfil, u.modelo FROM viajes v JOIN usuarios c ON c.id_usuario=v.id_conductor JOIN unidades u ON U.id_unidad = v.id_unidad WHERE v.status = 1 ORDER BY v.fechaviaje,v.hora DESC;";
+    //     $query1 = $this->db->query($sql);
+    //     $this->load->view("misviajes_view",array('viajes'=>$query1));
+    // }
     
     public function getparadas_viaje(){
         global $respuesta,$msj,$contenido,$data,$idregistro;
@@ -103,9 +103,40 @@ class Administrador extends CI_Controller {
 
 
 
-      public function recargas(){
+    public function viajes(){
  
     $this->load->view('vista_recargas_admin');
+
+    }
+
+
+    public function recargas(){
+ 
+    $this->load->view('vista_recargas_admin');
+
+    }
+
+       public function conductores(){
+ 
+    $this->load->view('vista_admin_conductores');
+
+    }
+
+       public function embajadores(){
+ 
+    $this->load->view('vista_admin_embajadores');
+
+    }
+
+    public function viajeros(){
+ 
+    $this->load->view('vista_admin_embajadores');
+
+    }
+
+    public function restablecer(){
+ 
+    $this->load->view('vista_admin_embajadores');
 
     }
  
@@ -116,10 +147,24 @@ class Administrador extends CI_Controller {
        $data = $this->Conductor_model->ver_mis_recargas()->result_array();
        echo json_encode( array( "data" => $data ));
      }
+
+       public function ver_lista_conductores(){
+        $this->load->model("Conductor_model");
+       $data = $this->Conductor_model->ver_lista_conductores()->result_array();
+       echo json_encode( array( "data" => $data ));
+     }
+    
+
+       public function ver_lista_embajadores(){
+        $this->load->model("Conductor_model");
+       $data = $this->Conductor_model->ver_lista_embajadores()->result_array();
+       echo json_encode( array( "data" => $data ));
+     }
+    
     
 
 
-    lista_cond
+    // lista_cond
 
 
 

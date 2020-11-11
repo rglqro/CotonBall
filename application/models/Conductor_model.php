@@ -20,6 +20,34 @@ class Conductor_model extends CI_Model
         // return $query->result();
     }
 
+
+    function lista_conductores(){
+       return  $this->db->query("SELECT u.id_usuario, u.nombre, u.apellidopa, u.apellidoma, u.celular, u.email, u.fecha_creacion, u.direccion, u.acerca, oc.descripcion, oc.id_opcion, u.foto_perfil, dl.lunes, dl.martes, dl.miercoles, dl.jueves, dl.viernes, dl.sabado, dl.domingo
+            FROM usuarios u 
+            INNER JOIN opciones_catalogo oc ON u.tipo_usuario = oc.id_opcion 
+            INNER JOIN dias_laborables dl ON dl.id_trabajador = u.id_usuario WHERE u.perfil = 2 AND oc.id_catalogo = 3");
+
+        // return $query->result();
+    }
+
+     function lista_embajadores(){
+       return  $this->db->query("SELECT u.id_usuario, u.nombre, u.apellidopa, u.apellidoma, u.celular, u.email, u.fecha_creacion, u.direccion, u.acerca, oc.descripcion, oc.id_opcion, u.foto_perfil, dl.lunes, dl.martes, dl.miercoles, dl.jueves, dl.viernes, dl.sabado, dl.domingo
+            FROM usuarios u 
+            INNER JOIN opciones_catalogo oc ON u.tipo_usuario = oc.id_opcion 
+            INNER JOIN dias_laborables dl ON dl.id_trabajador = u.id_usuario WHERE u.perfil = 1 AND oc.id_catalogo = 3");
+
+        // return $query->result();
+    }
+
+     function lista_viajeros(){
+       return  $this->db->query("SELECT u.id_usuario, u.nombre, u.apellidopa, u.apellidoma, u.celular, u.email, u.fecha_creacion, u.direccion, u.acerca, oc.descripcion, oc.id_opcion, u.foto_perfil, dl.lunes, dl.martes, dl.miercoles, dl.jueves, dl.viernes, dl.sabado, dl.domingo
+            FROM usuarios u 
+            INNER JOIN opciones_catalogo oc ON u.tipo_usuario = oc.id_opcion 
+            INNER JOIN dias_laborables dl ON dl.id_trabajador = u.id_usuario WHERE u.perfil = 3 AND oc.id_catalogo = 3");
+
+        // return $query->result();
+    }
+
  
  	
 }

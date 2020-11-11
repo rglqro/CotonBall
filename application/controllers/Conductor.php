@@ -117,10 +117,18 @@ class Conductor extends CI_Controller {
 
 
 
-  
+
     public function ver_mis_recargas(){
         $this->load->model("Conductor_model");
        $data = $this->Conductor_model->ver_mis_recargas()->result_array();
+       echo json_encode( array( "data" => $data ));
+     }
+
+
+
+      public function lista_conductores(){
+        $this->load->model("Conductor_model");
+       $data = $this->Conductor_model->lista_conductores()->result_array();
        echo json_encode( array( "data" => $data ));
      }
     

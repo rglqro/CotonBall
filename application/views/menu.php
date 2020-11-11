@@ -139,17 +139,17 @@
 
             case '3':
               # code...
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-car'></i> <p> Viajes </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/viajes")."' class='nav-link'><i class='nav-icon fa fa-car'></i> <p> Viajes </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-dollar'></i> <p> Conductores </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/conductores")."' class='nav-link'><i class='nav-icon fa fa-user-circle'></i> <p> Conductores </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-th'></i> <p> Embajadores </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/embajadores")."' class='nav-link'><i class='nav-icon fa fa-user'></i> <p> Embajadores </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-commenting'></i> <p> Viajeros </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/viajeros")."' class='nav-link'><i class='nav-icon fa fa-users'></i> <p> Viajeros </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/recargas")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Recargas </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/recargas")."' class='nav-link'><i class='nav-icon fa fa-tag'></i> <p> Recargas </p></a></li>";
 
-            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/perfil")."' class='nav-link'><i class='nav-icon fa fa-trophy'></i> <p> Reestablecer </p></a></li>";
+            echo "<li class='nav-item has-treeview'><a href='".site_url("Administrador/restablecer")."' class='nav-link'><i class='nav-icon fa fa-repeat'></i> <p> Reestablecer </p></a></li>";
 
             //reporte diario de viajes dia, veificar con Ricardo
 
