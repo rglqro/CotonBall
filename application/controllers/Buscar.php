@@ -24,7 +24,7 @@ public function index(){
             $filtro.="and v.fechaviaje = '$_POST[fecha]'";
         if(isset($_POST["hora"]) && $_POST["hora"]!='')
             $filtro.="and v.hora = '$_POST[hora]'";
-        $sql="SELECT v.*,c.nombre,c.apellidopa,c.apellidoma,c.foto_perfil FROM viajes v JOIN usuarios c ON c.id_usuario=v.id_conductor left JOIN escalas e ON v.id_viaje=e.idviaje "
+        $sql="SELECT DISTINCT v.*,c.nombre,c.apellidopa,c.apellidoma,c.foto_perfil FROM viajes v JOIN usuarios c ON c.id_usuario=v.id_conductor left JOIN escalas e ON v.id_viaje=e.idviaje "
                 . "WHERE v.fechaviaje<= CURDATE() $filtro ORDER BY v.fechaviaje,v.hora DESC;";
         $viajes = $this->db->query($sql);
         foreach ($viajes->result() as $fila){
