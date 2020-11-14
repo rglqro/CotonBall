@@ -87,7 +87,7 @@
 
         <div class="form-group has-feedback col-md-4">
           <label style="color: gray;">Celular</label>
-          <input type="number" maxlength="10" id="celular" name="celular" class="form-control" placeholder="Numero Celular" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
+          <input type="text" maxlength="10" id="celular" name="celular" class="form-control" placeholder="Numero Celular" required="true" autocomplete="off" autofocus style="border-radius: 5px;" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1">
         </div>
         </div>
 
@@ -97,12 +97,16 @@
         <div class="row">
         <div class="form-group has-feedback col-md-6">
           <label style="color: gray;">Usuario</label>
-          <input type="text" id="usuario" name="usuario" maxlength="10" class="form-control" placeholder="Usuario" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
+          <input type="text" id="usuario" readonly="true" name="usuario" maxlength="10" class="form-control" placeholder="Usuario" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
         </div>
 
         <div class="form-group has-feedback col-md-6">
           <label style="color: gray;">Contraseña</label>
-          <input type="text" id="contrasena" name="contrasena" class="form-control" placeholder="Contraseña" required="true" autocomplete="off" autofocus style="border-radius: 5px;">
+          <input type="text" maxlength="10" id="contrasena"  readonly="true"  name="contrasena" class="form-control" placeholder="Contraseña" required="true" autocomplete="off" autofocus style="border-radius: 5px;" min="1">
+
+       
+
+
         </div>
  
       </div>
@@ -154,6 +158,43 @@
 
 
  <script>
+
+
+
+  $(document).ready(function () {
+    $("#nombre").keyup(function () {
+        var value = $(this).val();
+        $("#usuario").val(value.toUpperCase());
+        var ta = $("#nombre");
+        nombre = ta.val().replace(/ /g, "");
+        ta.val(nombre.toUpperCase());
+
+    });
+
+
+
+     $("#apellido_paterno").keyup(function () {
+        var ta = $("#apellido_paterno");
+        apellido_paterno = ta.val().replace(/ /g, "");
+        ta.val(apellido_paterno.toUpperCase());
+
+    });
+
+         $("#apellido_materno").keyup(function () {
+        var ta = $("#apellido_materno");
+        apellido_materno = ta.val().replace(/ /g, "");
+        ta.val(apellido_materno.toUpperCase());
+
+    });
+
+
+
+    $("#celular").keyup(function () {
+        var value = $(this).val();
+        $("#contrasena").val(value);
+    });
+
+});
    
 
 $("#formulario_registro_cliente").submit( function(e) {

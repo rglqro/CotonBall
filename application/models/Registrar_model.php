@@ -22,6 +22,14 @@ class Registrar_model extends CI_Model
 
 
 
+     function insert_viajero($nombre, $apellido_paterno, $apellido_materno, $celular,$correo, $usuario, $contrasena){
+        return $this->db->query("INSERT INTO viajeros(nombre, apellido_paterno, apellido_materno, correo, celular, usuario, contrasena, estatus) VALUES ('".$nombre."', '".$apellido_paterno."', '".$apellido_materno."', '".$correo."', ".$celular.", '".$usuario."', '".$contrasena."', 1 )");
+}
+
+ 
+
+
+
 // function cargar_interes_agregado(){
 //   $respuesta = array( FALSE );
 //   if($this->input->post("idautopago")){
